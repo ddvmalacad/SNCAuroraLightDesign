@@ -8,6 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 <link href="./SNC Multi Media — Aurora Light_files/style.css" rel="stylesheet">
+
+
+
+
+
 <style>
   :root{
     --teal:#147a93; --teal-2:#1f9bb8; --teal-soft:#e6f4f8;
@@ -407,134 +412,72 @@
 <section id="quote">
   <div class="wrap">
     <div class="cta reveal">
+      
       <div>
         <h2>Get your free quote in 24 hours</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tell us about your event and we'll match you with the right LED system.</p>
       </div>
+      
       <form class="form" id="ledForm" method="POST">
-  <input type="hidden" name="access_key" value="3b7f8734-fbeb-45ec-8434-3ad80f158301">
-  
-  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        <input type="hidden" name="access_key" value="3b7f8734-fbeb-45ec-8434-3ad80f158301">
+        
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-  <label>Name</label>
-  <input type="text" name="name" placeholder="Your name" required>
-  
-  <label>Email</label>
-  <input type="email" name="email" id="emailInput" placeholder="you@email.com" required>
-  
-  <label>Product</label>
-  <select name="product">
-    <option value="Foldable LED">Foldable LED</option>
-    <option value="Tri-Fold LED">Tri-Fold LED</option>
-    <option value="Rental LED Screen">Rental LED Screen</option>
-    <option value="Not sure yet">Not sure yet</option>
-  </select>
-  
-  <label>Event details</label>
-  <textarea name="message" rows="2" placeholder="Date, location, screen size..." required></textarea>
-  
-  <button type="submit" class="btn btn-primary" id="submitBtn">Send Request →</button>
-  
-  <div id="formResult" style="margin-top: 15px; font-weight: 600; font-size: 0.9rem; display: none;"></div>
-</form>
-    </div>
-  </div>
-</section>
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Your name" required>
+        
+        <label>Email</label>
+        <input type="email" name="email" id="emailInput" placeholder="you@email.com" required>
+        
+        <label>Product</label>
+        <select name="product">
+          <option value="Foldable LED">Foldable LED</option>
+          <option value="Tri-Fold LED">Tri-Fold LED</option>
+          <option value="Rental LED Screen">Rental LED Screen</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+        
+        <label>Event details</label>
+        <textarea name="message" rows="2" placeholder="Date, location, screen size..." required></textarea>
+        
+        <button type="submit" class="btn btn-primary" id="submitBtn">Send Request →</button>
+        
+        <div id="formResult" style="margin-top: 15px; font-weight: 600; font-size: 0.9rem; display: none;"></div>
+      </form>
 
-<footer>
+    </div> </div> </section> <footer>
   <div class="wrap">
     <div class="foot">
-      <div><img src="./SNC Multi Media — Aurora Light_files/company.png" alt="SNC"><p>Premium rental LED screens for events of every scale — foldable, tri-fold and full rental LED systems.</p></div>
-      <div><h5>Products</h5><a href="#products">Foldable LED</a><a href="#products">Tri-Fold LED</a><a href="#products">Rental LED Screen</a></div>
-      <div><h5>Company</h5><a href="#why">Why Us</a><a href="#process">Process</a><a href="#reviews">Reviews</a></div>
-      <div><h5>Contact</h5><a href="mailto:hello@sncmultimedia.com">hello@sncmultimedia.com</a><a href="tel:+61000000000">+61 000 000 000</a></div>
+      <div>
+        <img src="./SNC Multi Media — Aurora Light_files/company.png" alt="SNC">
+        <p>Premium rental LED screens for events of every scale — foldable, tri-fold and full rental LED systems.</p>
+      </div>
+      <div>
+        <h5>Products</h5>
+        <a href="#products">Foldable LED</a>
+        <a href="#products">Tri-Fold LED</a>
+        <a href="#products">Rental LED Screen</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#why">Why Us</a>
+        <a href="#process">Process</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="mailto:hello@sncmultimedia.com">hello@sncmultimedia.com</a>
+        <a href="tel:+61000000000">+61 000 000 000</a>
+      </div>
     </div>
-    <div class="fb"><span>© 2026 SNC Multi Media. All rights reserved.</span><span>Privacy · Terms</span></div>
+    <div class="fb">
+      <span>© 2026 SNC Multi Media. All rights reserved.</span>
+      <span>Privacy · Terms</span>
+    </div>
   </div>
 </footer>
 
-<script>
-  const hd=document.getElementById('hd');
-  addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>30));
-  
+<script src="js/scripts.js"></script>
 
-  const burger=document.getElementById('burger'),mm=document.getElementById('mm');
-  burger.addEventListener('click',()=>mm.classList.toggle('open'));
-  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
-  
- 
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
- 
-  const form = document.getElementById('ledForm');
-  const result = document.getElementById('formResult');
-  const button = document.getElementById('submitBtn');
-  const emailInput = document.getElementById('emailInput');
-
- 
-  function validateEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); 
-    
-   
-    if (!validateEmail(emailInput.value.trim())) {
-      result.style.display = "block";
-      result.style.color = "#d93838"; 
-      result.textContent = "Please enter a valid email address (e.g., name@domain.com).";
-      emailInput.focus();
-      return; 
-    }
-
-    button.textContent = "Sending...";
-    button.disabled = true;
-
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    result.style.display = "block";
-    result.style.color = "var(--ink)";
-    result.textContent = "Please wait...";
-
-    fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                result.style.color = "var(--teal)";
-                result.textContent = "Success! Your request has been sent. We'll be in touch within 24 hours.";
-                form.reset(); 
-            } else {
-                console.log(response);
-                result.style.color = "#d93838"; 
-                result.textContent = json.message || "Something went wrong. Please try again.";
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            result.style.color = "#d93838";
-            result.textContent = "Network error. Please try again later.";
-        })
-        .then(function() {
-            button.textContent = "Send Request →";
-            button.disabled = false;
-            setTimeout(() => {
-                result.style.display = "none";
-            }, 6000);
-        });
-  });
-</script>
-
-
-</body></html>
+</body>
+</html>
