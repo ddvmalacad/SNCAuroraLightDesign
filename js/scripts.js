@@ -1,3 +1,4 @@
+
   const hd=document.getElementById('hd');
   addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>30));
   
