@@ -411,30 +411,32 @@
         <h2>Get your free quote in 24 hours</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tell us about your event and we'll match you with the right LED system.</p>
       </div>
-      <form class="form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="3b7f8734-fbeb-45ec-8434-3ad80f158301">
-        
-        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      <form class="form" id="ledForm" method="POST">
+  <input type="hidden" name="access_key" value="3b7f8734-fbeb-45ec-8434-3ad80f158301">
+  
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-        <label>Name</label>
-        <input type="text" name="name" placeholder="Your name" required>
-        
-        <label>Email</label>
-        <input type="email" name="email" placeholder="you@email.com" required>
-        
-        <label>Product</label>
-        <select name="product">
-          <option value="Foldable LED">Foldable LED</option>
-          <option value="Tri-Fold LED">Tri-Fold LED</option>
-          <option value="Rental LED Screen">Rental LED Screen</option>
-          <option value="Not sure yet">Not sure yet</option>
-        </select>
-        
-        <label>Event details</label>
-        <textarea name="message" rows="2" placeholder="Date, location, screen size..." required></textarea>
-        
-        <button type="submit" class="btn btn-primary">Send Request →</button>
-      </form>
+  <label>Name</label>
+  <input type="text" name="name" placeholder="Your name" required>
+  
+  <label>Email</label>
+  <input type="email" name="email" id="emailInput" placeholder="you@email.com" required>
+  
+  <label>Product</label>
+  <select name="product">
+    <option value="Foldable LED">Foldable LED</option>
+    <option value="Tri-Fold LED">Tri-Fold LED</option>
+    <option value="Rental LED Screen">Rental LED Screen</option>
+    <option value="Not sure yet">Not sure yet</option>
+  </select>
+  
+  <label>Event details</label>
+  <textarea name="message" rows="2" placeholder="Date, location, screen size..." required></textarea>
+  
+  <button type="submit" class="btn btn-primary" id="submitBtn">Send Request →</button>
+  
+  <div id="formResult" style="margin-top: 15px; font-weight: 600; font-size: 0.9rem; display: none;"></div>
+</form>
     </div>
   </div>
 </section>
@@ -452,24 +454,42 @@
 </footer>
 
 <script>
-
   const hd=document.getElementById('hd');
   addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>30));
- 
+  
+
   const burger=document.getElementById('burger'),mm=document.getElementById('mm');
   burger.addEventListener('click',()=>mm.classList.toggle('open'));
   mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
-
+  
+ 
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+ 
   const form = document.getElementById('ledForm');
   const result = document.getElementById('formResult');
   const button = document.getElementById('submitBtn');
+  const emailInput = document.getElementById('emailInput');
+
+ 
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
 
   form.addEventListener('submit', function(e) {
     e.preventDefault(); 
     
+   
+    if (!validateEmail(emailInput.value.trim())) {
+      result.style.display = "block";
+      result.style.color = "#d93838"; 
+      result.textContent = "Please enter a valid email address (e.g., name@domain.com).";
+      emailInput.focus();
+      return; 
+    }
+
     button.textContent = "Sending...";
     button.disabled = true;
 
