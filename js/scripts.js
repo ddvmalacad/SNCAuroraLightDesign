@@ -86,3 +86,21 @@ form.addEventListener("submit", function (e) {
       }, 6000);
     });
 });
+
+
+function moveSlide(btn, direction) {
+    const carousel = btn.closest('.carousel');
+    const slides = carousel.querySelectorAll('.slides img');
+    
+    // Find index of currently active slide
+    let activeIndex = Array.from(slides).findIndex(img => img.classList.contains('active'));
+    
+    // Remove active class
+    slides[activeIndex].classList.remove('active');
+    
+    // Calculate new index with wrap-around
+    activeIndex = (activeIndex + direction + slides.length) % slides.length;
+    
+    // Add active class to new slide
+    slides[activeIndex].classList.add('active');
+  }
